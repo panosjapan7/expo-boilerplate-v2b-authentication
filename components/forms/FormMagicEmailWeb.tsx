@@ -61,6 +61,7 @@ const FormMagicEmailWeb = () => {
       return;
     }
     const actionCodeSettings = {
+      // This is the URL that we will redirect back to after clickin the link in the magic email
       url: "http://localhost:8081/magic-email",
       handleCodeInApp: true,
     };
