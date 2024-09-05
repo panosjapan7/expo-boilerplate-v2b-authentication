@@ -63,6 +63,16 @@ const ThemeStyledStack = () => {
             ),
           }}
         />
+        <Stack.Screen
+          name="magic-email"
+          options={{
+            presentation: "modal",
+            headerTitle: "Magic Email",
+            headerLeft: () => (
+              <ButtonCloseModal size={22} color={themeHeaderTextColor} />
+            ),
+          }}
+        />
         <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
       </Stack>
     </>
