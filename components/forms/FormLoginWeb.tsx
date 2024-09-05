@@ -221,6 +221,19 @@ const FormLoginWeb = () => {
               Don't have an account?{" "}
               <span className="bottomLink-bold">Register here</span>
             </a>
+            <a
+              href="/magic-email"
+              onClick={(e) => {
+                e.preventDefault();
+                router.push("/magic-email");
+              }}
+              style={{
+                color: themeHeaderTextColor,
+                textDecorationColor: themeHeaderTextColor,
+              }}
+            >
+              Passwordless Sign in with Magic Email
+            </a>
           </div>
         </div>
       )}
