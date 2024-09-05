@@ -229,6 +229,14 @@ const FormLoginMobile = () => {
                 <Text style={globalStyles.textRegular}>Forgot Password?</Text>
               </Link>
             </View>
+            <Spacer marginTop={10} />
+            <View>
+              <Link href="/magic-email" style={styles.link}>
+                <Text style={globalStyles.textRegular}>
+                  Passwordless Sign in with Magic Email
+                </Text>
+              </Link>
+            </View>
           </View>
         )}
       </TouchableWithoutFeedback>
