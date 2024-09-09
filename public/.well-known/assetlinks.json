@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.expo.authentication",
+      "sha256_cert_fingerprints": [
+        "FA:2D:E0:25:6B:4D:94:FD:29:7A:2D:02:6E:1D:93:22:44:DE:70:F7:9C:C2:64:09:70:4B:FC:1A:D6:B5:DD:9D"
+      ]
+    }
+  }
+]

@@ -2,7 +2,7 @@ export default {
   expo: {
     name: "expo-boilerplate-v2b-authentication",
     slug: "expo-boilerplate-v2b-authentication",
-    scheme: "expo-boilerplate-v2b-authentication",
+    scheme: "expo-boilerplate-firebase.firebaseapp.com",
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/icon.png",
@@ -26,6 +26,20 @@ export default {
       package: "com.expo.authentication",
       googleServicesFile:
         process.env.GOOGLE_SERVICES_JSON ?? "./google-services.json",
+      intentFilters: [
+        {
+          action: "VIEW",
+          data: [
+            {
+              scheme: "https",
+              // This matches my Firebase project's "authDomain"
+              host: "expo-boilerplate-firebase.firebaseapp.com",
+              pathPrefix: "/magic-email",
+            },
+          ],
+          category: ["BROWSABLE", "DEFAULT"],
+        },
+      ],
     },
     web: {
       favicon: "./assets/favicon.png",

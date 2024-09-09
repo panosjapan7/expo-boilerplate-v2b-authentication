@@ -4,6 +4,7 @@ import { Platform, StatusBar, Text, View } from "react-native";
 import useAuthRedirect from "../hooks/useAuthRedirect";
 import { useThemeContext } from "../contexts/ThemeContext";
 import { useGlobalStyles } from "../styles/stylesheets/globalStyles";
+import FormMagicEmailMobile from "../components/forms/FormMagicEmailMobile";
 
 const MagicEmail = () => {
   const authRedirect = useAuthRedirect();
@@ -26,9 +27,7 @@ const MagicEmail = () => {
         }
         key={theme}
       />
-      <View style={globalStyles.container}>
-        <Text style={globalStyles.textBlack}>Magic Email Screen</Text>
-      </View>
+      <FormMagicEmailMobile />
     </>
   );
 };
