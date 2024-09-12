@@ -6,8 +6,9 @@ import {
   signInWithEmailAndPassword,
   User,
   GoogleAuthProvider,
-  signInWithPopup,
 } from "firebase/auth";
+// @ts-ignore
+import { signInWithPopup } from "firebase/auth";
 
 import { webAuth } from "../../firebase/firebaseConfig";
 import { AuthContext } from "../../contexts/AuthContext";
