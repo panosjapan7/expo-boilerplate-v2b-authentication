@@ -28,7 +28,6 @@ let auth: Auth;
 
 if (Platform.OS === "web") {
   auth = getAuth(firebaseApp);
-  const webAuth: Auth = getAuth(firebaseApp);
 } else {
   auth = initializeAuth(firebaseApp, {
     persistence: getReactNativePersistence(ReactNativeAsyncStorage),
