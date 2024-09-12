@@ -1,6 +1,6 @@
 <!-- ./README.md -->
 
-# Version 2 — Authentication with React Native Firebase Package (for mobile), Firebase Auth (for web)
+# Version 2 — Authentication with React Native Firebase (mobile), Modular Firebase JS SDK (web)
 
 [expo-boilerplate-v2-authentication](https://github.com/panosjapan7/expo-boilerplate-v2-authentication)
 
