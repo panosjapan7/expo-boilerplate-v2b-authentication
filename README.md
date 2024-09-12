@@ -6,7 +6,7 @@
 
 ## TECH STACK
 
-- React Native, TypeScript, Expo v.50+, Expo Router, React Native Firebase Auth (mobile), Firebase Auth (web) StyleSheet, CSS
+- React Native, TypeScript, Expo v.50+, Expo Router, Modular Firebase JS SDK (web), React Native Firebase Auth (mobile), Firebase Authentication, StyleSheet, CSS
 
 <details>
 <summary>Firebase Auth</summary>
