@@ -1,6 +1,13 @@
 // ./firebase/firebaseConfig.ts
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+import { Platform } from "react-native";
+import { getApps, initializeApp } from "firebase/app";
+import {
+  Auth,
+  getAuth,
+  getReactNativePersistence,
+  initializeAuth,
+} from "firebase/auth";
+import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_API_KEY,
@@ -12,10 +19,20 @@ const firebaseConfig = {
   measurementId: process.env.EXPO_PUBLIC_MEASUREMENT_ID,
 };
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+// Initialize Firebase app if it's not already initialized
+const firebaseApp = !getApps().length
+  ? initializeApp(firebaseConfig)
+  : getApps()[0]; // Reuse existing Firebase app
 
-const auth = firebase.auth();
+let auth: Auth;
+
+if (Platform.OS === "web") {
+  auth = getAuth(firebaseApp);
+  const webAuth: Auth = getAuth(firebaseApp);
+} else {
+  auth = initializeAuth(firebaseApp, {
+    persistence: getReactNativePersistence(ReactNativeAsyncStorage),
+  });
+}
 
 export { auth as webAuth };

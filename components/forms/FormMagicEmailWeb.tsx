@@ -1,7 +1,12 @@
 // ./components/forms/FormMagicEmailWeb.tsx
 import { useContext, useEffect, useState } from "react";
 import { router } from "expo-router";
-import { User as FirebaseUserWeb } from "firebase/auth";
+import {
+  User as FirebaseUserWeb,
+  isSignInWithEmailLink,
+  signInWithEmailLink,
+  sendSignInLinkToEmail,
+} from "firebase/auth";
 
 import { webAuth } from "../../firebase/firebaseConfig";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -26,12 +31,11 @@ const FormMagicEmailWeb = () => {
 
   useEffect(() => {
     // Check if the link is for sign-in
-    if (webAuth.isSignInWithEmailLink(window.location.href)) {
+    if (isSignInWithEmailLink(webAuth, window.location.href)) {
       const storedEmail = window.localStorage.getItem("emailForSignIn");
       if (storedEmail) {
         // If email is found in local storage, complete sign-in
-        webAuth
-          .signInWithEmailLink(storedEmail, window.location.href)
+        signInWithEmailLink(webAuth, storedEmail, window.location.href)
           .then((result) => {
             console.log("Successfully signed in!", result);
             const user = result.user as FirebaseUserWeb;
@@ -40,7 +44,7 @@ const FormMagicEmailWeb = () => {
             // Remove the email from local storage as it's no longer needed
             window.localStorage.removeItem("emailForSignIn");
           })
-          .catch((error) => {
+          .catch((error: any) => {
             console.error("Error signing in: ", error);
             setError("Failed to sign in. Please try again.");
           });
@@ -67,7 +71,7 @@ const FormMagicEmailWeb = () => {
     };
 
     try {
-      await webAuth.sendSignInLinkToEmail(email, actionCodeSettings);
+      await sendSignInLinkToEmail(webAuth, email, actionCodeSettings);
       window.localStorage.setItem("emailForSignIn", email);
       setEmailSentMessage(
         `We have sent you an email at ${email} with the sign-in link!`
