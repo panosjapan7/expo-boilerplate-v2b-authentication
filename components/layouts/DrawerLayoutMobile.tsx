@@ -28,13 +28,24 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
   const { theme } = useThemeContext();
 
   const handleLogout = async () => {
-    await auth().signOut();
-    await GoogleSignin.signOut();
-    setUser(null);
-    navigation.reset({
-      index: 0,
-      routes: [{ name: "index" as never }],
-    });
+    try {
+      // Sign out from Firebase Auth
+      await auth().signOut();
+
+      // Sign out from Google Sign-In
+      await GoogleSignin.signOut();
+
+      // Clear the user context
+      setUser(null);
+
+      // Use navigation to reset the stack
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "index" as never }], // Adjust the route name if necessary
+      });
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   return (
