@@ -9,6 +9,7 @@ import {
   DrawerContentComponentProps,
 } from "@react-navigation/drawer";
 import auth from "@react-native-firebase/auth";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 import { AuthContext } from "../../contexts/AuthContext";
 import { useThemeContext } from "../../contexts/ThemeContext";
@@ -27,6 +28,7 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
 
   const handleLogout = async () => {
     await auth().signOut();
+    await GoogleSignin.signOut();
     setUser(null);
     router.replace("/");
   };
