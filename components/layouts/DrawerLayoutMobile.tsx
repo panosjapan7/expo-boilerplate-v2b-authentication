@@ -1,7 +1,7 @@
 // ./components/layouts/DrawerLayoutMobile.tsx
 import { useContext } from "react";
 import { View } from "react-native";
-import { router, usePathname } from "expo-router";
+import { router, useNavigation, usePathname } from "expo-router";
 import { Drawer } from "expo-router/drawer";
 import {
   DrawerContentScrollView,
@@ -21,6 +21,7 @@ import IconSettings from "../icons/IconSettings";
 import ButtonTheme from "../buttons/ButtonTheme";
 
 const CustomDrawer = (props: DrawerContentComponentProps) => {
+  const navigation = useNavigation();
   const { setUser } = useContext(AuthContext);
   const { themeTextColor } = useGlobalStyles();
   const pathname = usePathname();
@@ -30,7 +31,10 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
     await auth().signOut();
     await GoogleSignin.signOut();
     setUser(null);
-    router.replace("/");
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "index" as never }],
+    });
   };
 
   return (
