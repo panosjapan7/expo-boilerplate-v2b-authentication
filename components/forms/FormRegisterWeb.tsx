@@ -61,7 +61,13 @@ const FormRegisterWeb = () => {
         },
       });
     } catch (error: any) {
-      console.log("Error ", error.message);
+      // Check if the email is already in use
+      if (error.code === "auth/email-already-in-use") {
+        window.alert("This email is already associated with a Google account.");
+        console.log("This email is already associated with a Google account.");
+      }
+      window.alert(`Registration error: ${error.message}`);
+      console.error("Registration error:", error.message);
     } finally {
       setStatus("idle");
     }
