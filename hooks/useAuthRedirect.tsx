@@ -1,12 +1,13 @@
 // ./hooks/useAuthRedirect.ts
 import { useContext, useEffect, useState } from "react";
-import { router, useSegments } from "expo-router";
+import { router, useNavigation, useSegments } from "expo-router";
 import { AuthContext } from "../contexts/AuthContext";
 import LoadingIndicator from "../components/indicators/LoadingIndicator";
 
 const useAuthRedirect = () => {
   const { user, loading } = useContext(AuthContext);
   const [isMounted, setIsMounted] = useState(false);
+  const navigation = useNavigation();
   const segments = useSegments();
 
   useEffect(() => {
@@ -19,7 +20,10 @@ const useAuthRedirect = () => {
 
       // If user is not logged in and is in a protected route, redirect to Home screen
       if (!user && isInDrawerOrLowerLevel) {
-        router.replace("/");
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "index" as never }],
+        });
         return;
       }
 

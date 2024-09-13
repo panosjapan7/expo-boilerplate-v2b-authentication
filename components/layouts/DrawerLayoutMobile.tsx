@@ -37,12 +37,6 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
 
       // Clear the user context
       setUser(null);
-
-      // Use navigation to reset the stack
-      navigation.reset({
-        index: 0,
-        routes: [{ name: "index" as never }], // Adjust the route name if necessary
-      });
     } catch (error) {
       console.error("Error during logout:", error);
     }
